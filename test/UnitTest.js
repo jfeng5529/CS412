@@ -1,9 +1,8 @@
-let mocha = require('mocha')
-let describe = mocha.describe
+let {describe} = require('mocha')
 const {explain, expect} = require("chai");
 const {output} = require('../PS1.P1.js');
-const {func} = require('./PS1.P3.js');
-const {evaluate} = require('./PS1.P2.js');
+const {func} = require('../PS1.P3.js');
+const {evaluate} = require('../PS1.P2.js');
 
 describe("Reverse order test", ()=>{
     it("should return the reverse order of the string of abcdefg", ()=>{
@@ -12,6 +11,7 @@ describe("Reverse order test", ()=>{
     });
     it("should return the reverse order of the string of supercalifragilisticexpialidocious", () => {
         let ans = output("supercalifragilisticexpialidocious");
+        console.log(ans);
         expect(ans).to.be.equal("xuutsssrrppoollliiiiiiigfeedcccaaa");
     });
 });
@@ -47,7 +47,7 @@ describe("operation tests", () => {
 describe("string modifaction test(P3)", () => {
     it("should return the array of strings", () => {
         const experssion1 = func("supercalifragilisticexpialidocious", (str1) => { return str1.toLowerCase().split(/(?=c)/g) })
-        expect(experssion1).to.be.equal(['super', 'califragilisti', 'cexpialido', 'cious']);
+        expect(experssion1).to.eql(['super', 'califragilisti', 'cexpialido', 'cious']);
     });
     it("should return an object", () => {
         const experssion2 = func("supercalifragilisticexpialidocious", (str1) => {
@@ -60,7 +60,7 @@ describe("string modifaction test(P3)", () => {
             }
             return { originalString: str1, modifiedString: newStr, numberReplaced: count, length: newStr.length };
         })
-        expect(experssion2).to.be.equal({
+        expect(experssion2).to.eql({
             originalString: 'supercalifragilisticexpialidocious',
             modifiedString: 'supercAlifrAgilisticexpiAlidocious',
             numberReplaced: 3,

@@ -16,4 +16,4 @@ const evaluate = exp => {
     }
 }
 
-exports.modules = evaluate;
+module.exports = { evaluate}

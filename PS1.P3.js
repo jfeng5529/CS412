@@ -14,4 +14,4 @@ const experssion2 = func("supercalifragilisticexpialidocious", (str1) => {
     }
      return { originalString: str1, modifiedString: newStr, numberReplaced: count, length: newStr.length };
 })
-exports.modules = func;
+module.exports = { func }
