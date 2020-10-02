@@ -12,6 +12,6 @@ const experssion2 = func("supercalifragilisticexpialidocious", (str1) => {
             count++;
         }
     }
-     return { originalString: str1, modifiedString: newStr, numberReplaced: count, length: newStr.length };
+    return { originalString: str1, modifiedString: str1.replace(/a/g, "A"), numberReplaced: str1.split("a").length-1, length: str1.length };
 })
 module.exports = { func }
