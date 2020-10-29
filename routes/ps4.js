@@ -24,7 +24,7 @@ const getData = (postalCode) => {
 // router.post('/submit-form', function (req, res, next) {
 router.post('/', function (req, res, next) {
   const postalCode = req.body.postalCode;
-  getData(postalCode).then((cases) => res.render('postResponse', { 'response': cases, 'postalCode': postalCode}));
+  getData(postalCode).then((cases) => res.render('postResponse', { 'response': cases}));
   // getData(postalCode).then((cases) =>res.send(cases));
 });
   

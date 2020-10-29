@@ -1,7 +1,8 @@
 extends layout
 
 block content
-  h1 Weather Info in the area code of #{postalCode}!
-  div= postalCode
-    each val, key in response
-      div #{key}: #{val}
+  div(class='center')
+    h1 Weather Info!
+    div
+      each val, key in response
+        div #{key}: #{val}
