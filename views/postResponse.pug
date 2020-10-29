@@ -1,6 +1,7 @@
 extends layout
 
 block content
-  h1 POST Response
-  p= response
-  p= length
+  h1 Weather Info in the area code of #{postalCode}!
+  div= postalCode
+    each val, key in response
+      div #{key}: #{val}

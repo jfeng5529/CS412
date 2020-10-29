@@ -1,13 +1,10 @@
 extends layout
 
 block content
-  h1 Enter the country you want to look at for Coronavirus Updates
-   form(action='/ps4/submit-form', method='POST')
-    p
-      | Country: 
-      input(type='text', name='region', value='')
-      |          year: 
-      input(type='text', name='year', value='')
-      |          imdb: 
-      input(type='text', name='imdb', value='')
+ div(class = 'center')
+  h1 Check the currect weather!
+   form(action='ps4', method='POST')
+    p Zip Code: 
+      input(type='text', name='postalCode', value='', class ='button')
+      
     input(type='submit', value='Submit')
