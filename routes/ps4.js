@@ -1,30 +1,63 @@
 let express = require('express');
 let router = express.Router();
 const request = require('request');
+const fetch = require('node-fetch');
+const redis = require('redis');
+const client = redis.createClient();
+const {promisify} = require('util');
+const asyncSet = promisify(client.set).bind(client);
+const asyncGet = promisify(client.get).bind(client);
+const asyncExists = promisify(client.exists).bind(client);
+const asyncExpires = promisify(client.expire).bind(client);
 let config = require('../config/config.js');
+const { stat } = require('fs');
 
-const getData = (postalCode) => {
+client.flushdb((err, response)=>{
+  if (err){
+    throw new Error('Theres an error flushing the db');
+  }
+})
+
+const getData = async (postalCode) => {
   console.log(config);
-  return new Promise((resolve, reject) => {
-    console.log(config.url + "us." + postalCode + "?api_id=" + config.apiId + "&app_key=" + config.apiKey);
-    request(config.url+"us."+postalCode+"?app_id="+config.apiId+"&app_key="+config.apiKey, (err, res, body) => {
-      if(err){
-        reject(new Error(err));
-      }else{
-        let info = JSON.parse(body);
-        resolve(info)
-      }
 
-    });
-  });
+  var out = await fetch(config.url+"us."+postalCode+"?app_id="+config.apiId+"&app_key="+config.apiKey);
+  var data = await out.text();
+  return data;
+  // console.log(JSON.parse(JSON.parse(out)));
+
+  // return new Promise((resolve, reject) => {
+  //   console.log(config.url + "us." + postalCode + "?api_id=" + config.apiId + "&app_key=" + config.apiKey);
+  //   request(config.url+"us."+postalCode+"?app_id="+config.apiId+"&app_key="+config.apiKey, (err, res, body) => {
+  //     if(err){
+  //       reject(new Error(err));
+  //     }else{
+  //       let info = JSON.stringify(body);
+  //       resolve(info)
+  //     }
+
+  //   });
+  // });
 
 };
 
 /* POST */
 // router.post('/submit-form', function (req, res, next) {
-router.post('/', function (req, res, next) {
+router.post('/', async (req, res, next) => {
   const postalCode = req.body.postalCode;
-  getData(postalCode).then((cases) => res.render('postResponse', { 'response': cases}));
+  let match = await asyncExists(postalCode)
+  if (match){
+    const data = await asyncGet(postalCode);
+    res.send({response: data, cached: true });
+  }
+  else{
+    const data = await getData(postalCode);
+    await asyncSet(postalCode, data);
+    await asyncExpires(postalCode, 15);
+
+    res.send({ response: data, cached: false });
+  }
+  
   // getData(postalCode).then((cases) =>res.send(cases));
 });
   
