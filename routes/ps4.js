@@ -24,20 +24,6 @@ const getData = async (postalCode) => {
   var out = await fetch(config.url+"us."+postalCode+"?app_id="+config.apiId+"&app_key="+config.apiKey);
   var data = await out.text();
   return data;
-  // console.log(JSON.parse(JSON.parse(out)));
-
-  // return new Promise((resolve, reject) => {
-  //   console.log(config.url + "us." + postalCode + "?api_id=" + config.apiId + "&app_key=" + config.apiKey);
-  //   request(config.url+"us."+postalCode+"?app_id="+config.apiId+"&app_key="+config.apiKey, (err, res, body) => {
-  //     if(err){
-  //       reject(new Error(err));
-  //     }else{
-  //       let info = JSON.stringify(body);
-  //       resolve(info)
-  //     }
-
-  //   });
-  // });
 
 };
 
