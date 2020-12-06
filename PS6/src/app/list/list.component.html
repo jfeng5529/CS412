@@ -1,1 +1,12 @@
-<p>list works!</p>
+<div>
+    <ul *ngFor="let weather of allWeather">
+            <li (click)="setSelectedWeather(weather)">{{weather.location}}</li>
+    </ul>
+</div>
+
+<h3>Details</h3>
+<div *ngIf ="selectedWeather" >
+    <ul *ngFor="let property of selectedWeather| keyvalue">
+        <li >{{property.key}} = {{property.value}}</li>
+    </ul>
+</div>

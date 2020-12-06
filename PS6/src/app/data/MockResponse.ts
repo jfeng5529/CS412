@@ -1,6 +1,7 @@
 import { Weather } from './Weather'
 export const allWeather: Weather[] = [
     {
+    location: "Boston",
     lat: 40.68,
     lon: -74.17,
     alt_m: 5,
@@ -16,6 +17,7 @@ export const allWeather: Weather[] = [
     windspd_mph: 20.51,
 },
     {
+        location:"New York City",
         lat: 40.68,
         lon: 74.17,
         alt_m: 5,
@@ -31,6 +33,7 @@ export const allWeather: Weather[] = [
         windspd_mph: 20.51
     },
     {
+        location:"Seattle",
         lat: 45.68,
         lon: -54.17,
         alt_m: 5,

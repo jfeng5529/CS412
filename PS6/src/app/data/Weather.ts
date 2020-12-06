@@ -1,4 +1,5 @@
 export class Weather {
+    location: string;
     lat: number;
     lon: number;
     alt_m: number;
