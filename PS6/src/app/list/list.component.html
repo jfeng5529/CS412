@@ -4,8 +4,11 @@
     </ul>
 </div> -->
 <h3>Details</h3>
+
 <div *ngIf ="currentWeather" >
     <ul *ngFor="let weather of currentWeather">
-        <li >{{weather}}</li>
+        <li >Lat: {{(weather.response.lat)}} Long: {{weather.response.lon}} Weather: {{weather.response.wx_desc}}  Temp: {{weather.response.temp_c}}</li>
     </ul>
+    <p> Is it Cached : {{currentWeather[0].cached}}</p>
 </div>
+

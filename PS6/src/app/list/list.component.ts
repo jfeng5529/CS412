@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
   @Input() currentWeather: any;
-
+  isCached: any;
   constructor() { }
 
   ngOnInit(): void {

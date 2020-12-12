@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherServicesService} from '../services/weather-services.service';
 
-interface WX {
-  weather: object;
-}
 
 @Component({
   selector: 'app-form',
@@ -20,12 +17,20 @@ export class FormComponent implements OnInit {
   }
 
   getWeatherByZipCode(): void { // call a service to get the current data
-    // this.weatherService.getWeather(this.zipCode).subscribe(
-    //   (response: WX) => {
-    //     console.log(`Response: ${response}`);
-    //     this.currentWeather = response.weather;
-    //   }
-    // );
-    this.currentWeather = ["yes", "no"];
+    console.log(this.zipCode);
+    this.weatherService.getWeather(this.zipCode).subscribe(
+      (data) => {
+        
+
+        let temp = JSON.stringify(data);
+        let str= temp.substring(0, 12) + temp.substring(13, temp.lastIndexOf(",")-1)+temp.substring(temp.lastIndexOf(","));
+        str = str.replace(/\\/g, "");
+        let temp2 = JSON.parse(str);
+        console.log(temp2);
+        
+        
+        this.currentWeather = [temp2, temp2, temp2];
+      }
+    );
 }
 }
