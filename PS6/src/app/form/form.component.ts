@@ -20,12 +20,12 @@ export class FormComponent implements OnInit {
   }
 
   getWeatherByZipCode(): void { // call a service to get the current data
-    this.weatherService.getWeather(this.zipCode).subscribe(
-      (response: WX) => {
-        console.log(`Response: ${response}`);
-        this.currentWeather = response.weather;
-      }
-    );
-
+    // this.weatherService.getWeather(this.zipCode).subscribe(
+    //   (response: WX) => {
+    //     console.log(`Response: ${response}`);
+    //     this.currentWeather = response.weather;
+    //   }
+    // );
+    this.currentWeather = ["yes", "no"];
 }
 }
