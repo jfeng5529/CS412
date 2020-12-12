@@ -5,8 +5,8 @@
 </div>
 
 <h3>Details</h3>
-<div *ngIf ="selectedWeather" >
-    <ul *ngFor="let property of selectedWeather| keyvalue">
-        <li >{{property.key}} = {{property.value}}</li>
+<div *ngIf ="currentWeather" >
+    <ul *ngFor="let weather of currentWeather">
+        <li >{{weather}}</li>
     </ul>
 </div>
