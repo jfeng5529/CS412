@@ -1,8 +1,8 @@
 <p>Check your weather by entering your zipcode!</p>
 
 <form (ngSubmit)="getWeatherByZipCode()">
-    ZipCode: <input name="zipcode" [(ngModel)]="zipcode" required minlength="1">
-    <button type="submit" [disabled]="zipcode.size == 0">Submit</button>
+    ZipCode: <input name="zipcode" [(ngModel)]="zipCode" required minlength="1">
+    <button type="submit" [disabled]="!zipCode">Submit</button>
 </form>
 
 <div>

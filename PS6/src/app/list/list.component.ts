@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Weather } from '../data/Weather';
 import { allWeather } from '../data/MockResponse';
 
@@ -8,7 +8,7 @@ import { allWeather } from '../data/MockResponse';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-
+  @Input() currentWeather: any;
   allWeather: Weather[] = allWeather
   Weather: Weather;
   selectedWeather: Weather;

@@ -1,3 +1,4 @@
+export let weatherConfig =
 {
     "url" : "http://localhost:3030/ps4/"
 }

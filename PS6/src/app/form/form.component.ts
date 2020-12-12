@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { WxService } from '../services/wx.service';
+import { WeatherServicesService} from '../services/weather-services.service';
 
 interface WX {
-  current: object;
-  daily: object;
+  weather: object;
 }
 
 @Component({
@@ -13,17 +12,18 @@ interface WX {
 })
 export class FormComponent implements OnInit {
   currentWeather:any;
+  zipCode: null;
 
-  constructor() { }
+  constructor(private weatherService: WeatherServicesService) { }
 
   ngOnInit(): void {
   }
 
-  getWeather(): void { // call a service to get the current data
-    this.wxService.getWeather().subscribe(
+  getWeatherByZipCode(): void { // call a service to get the current data
+    this.weatherService.getWeather(this.zipCode).subscribe(
       (response: WX) => {
         console.log(`Response: ${response}`);
-        this.currentWeather = response.current;
+        this.currentWeather = response.weather;
       }
     );
 

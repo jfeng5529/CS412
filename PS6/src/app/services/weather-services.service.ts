@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import data from '../config/config.json';
+import {weatherConfig} from "../config";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class WeatherServicesService {
   }
 
   getWeather(zipCode: string): Observable<any> {
-    return this.http.get(data.weatherURL + zipCode);
+    return this.http.get(weatherConfig.url + zipCode);
   }
 
 }
